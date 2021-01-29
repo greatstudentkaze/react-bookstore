@@ -1,6 +1,9 @@
+
+
 import GlobalStyle from './components/styled/GlobalStyle';
 
 function App() {
+
   return (
     <>
       <GlobalStyle />
