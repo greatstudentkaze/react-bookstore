@@ -1,15 +1,34 @@
-
+import { connect } from 'react-redux';
 
 import GlobalStyle from './components/styled/GlobalStyle';
 
-function App() {
+import { setBooks } from './actions/books';
+
+const newBooks = [
+  {
+    id: 0,
+    title: 'New Book'
+  }
+];
+
+function App(props) {
+  const { books } = props.books;
 
   return (
     <>
       <GlobalStyle />
-      <p>bookstore</p>
+      <p>{books[0].title}</p>
+      <button type="button" onClick={() => props.setBooks(newBooks)}>setBOoks</button>
     </>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  ...state,
+});
+
+const mapDispatchToProps = {
+  setBooks
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
