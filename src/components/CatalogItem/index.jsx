@@ -9,9 +9,6 @@ const CatalogItem = ({ title, author, image: imageUrl, price, rating }) => {
         <Card.Meta>
           <span className='date'>{author}</span>
         </Card.Meta>
-        <Card.Description>
-          Lorem ipsum dolor sit amet.
-        </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <Icon name="rub" />

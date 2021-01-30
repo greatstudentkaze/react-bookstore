@@ -3,7 +3,7 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 const LoaderComponent = () => {
   return (
     <Dimmer active inverted>
-      <Loader inverted>Загрузка</Loader>
+      <Loader size="large" inverted>Загрузка</Loader>
     </Dimmer>
   );
 };
