@@ -1,6 +1,6 @@
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Icon, Image } from 'semantic-ui-react';
 
-const CatalogItem = ({ data: { title, author, image: imageUrl, price, rating } }) => {
+const CatalogItem = ({ title, author, image: imageUrl, price, rating }) => {
   return (
     <Card>
       <Image src={imageUrl} wrapped ui={false} />
@@ -10,11 +10,11 @@ const CatalogItem = ({ data: { title, author, image: imageUrl, price, rating } }
           <span className='date'>{author}</span>
         </Card.Meta>
         <Card.Description>
-          Matthew is a musician living in Nashville.
+          Lorem ipsum dolor sit amet.
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        Рейтинг
+        <Icon name="rub" />
         {price}
       </Card.Content>
     </Card>
