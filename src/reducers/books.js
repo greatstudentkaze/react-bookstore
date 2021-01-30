@@ -1,12 +1,7 @@
 import { ADD_BOOK, SET_BOOKS } from '../types/books';
 
 const initialState = {
-  books: [
-    {
-      id: 21321,
-      title: 'Boooooooooooooook',
-    }
-  ],
+  items: null,
 };
 
 export const books = (state = initialState, action) => {
@@ -14,14 +9,7 @@ export const books = (state = initialState, action) => {
     case SET_BOOKS:
       return {
         ...state,
-        books: action.payload
-      }
-    case ADD_BOOK:
-      return {
-        books: [
-          ...state,
-          action.payload
-        ]
+        items: action.payload,
       }
     default:
       return state;
