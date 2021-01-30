@@ -1,7 +1,7 @@
 import { HIDE_LOADER, SHOW_LOADER } from '../types/app';
 
 const initialState = {
-  loading: false,
+  isLoading: false,
 };
 
 export const app = (state = initialState, action) => {
@@ -9,12 +9,12 @@ export const app = (state = initialState, action) => {
     case SHOW_LOADER:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       }
     case HIDE_LOADER:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
       }
     default:
       return state;

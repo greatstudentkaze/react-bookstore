@@ -1,7 +1,7 @@
-import { ADD_BOOK, SET_BOOKS } from '../types/books';
+import { SET_BOOKS } from '../types/books';
 
 const initialState = {
-  items: null,
+  items: [],
 };
 
 export const books = (state = initialState, action) => {
