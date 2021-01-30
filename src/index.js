@@ -6,6 +6,8 @@ import App from './App';
 
 import { store } from './store';
 
+import 'semantic-ui-css/semantic.min.css';
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
