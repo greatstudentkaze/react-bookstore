@@ -1,7 +1,8 @@
-import { SET_PRODUCTS } from '../types/catalog';
+import { SET_FILTER, SET_PRODUCTS } from '../types/catalog';
 
 const initialState = {
   items: [],
+  filterBy: 'all',
 };
 
 export const catalog = (state = initialState, action) => {
@@ -10,6 +11,11 @@ export const catalog = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
+      }
+    case SET_FILTER:
+      return {
+        ...state,
+        filterBy: action.payload,
       }
     default:
       return state;

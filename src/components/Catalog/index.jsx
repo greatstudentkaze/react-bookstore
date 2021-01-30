@@ -5,10 +5,11 @@ import styled from 'styled-components';
 
 import { Card } from 'semantic-ui-react';
 
-import Loader from '../Loader';
 import CatalogItem from '../CatalogItem';
+import Filter from '../Filter';
+import Loader from '../Loader';
 
-import { setProducts } from '../../actions/catalog';
+import { setFilter, setProducts } from '../../actions/catalog';
 import { hideLoader, showLoader } from '../../actions/app';
 
 const StyledCatalog = styled.section`
@@ -34,12 +35,13 @@ class Catalog extends React.Component {
 
     return (
       <StyledCatalog>
+        <Filter />
         <Card.Group itemsPerRow={4}>
           {
             isLoading
               ? <Loader />
               : products.map(product =>
-                <CatalogItem key={product.id} {...product} />
+                  <CatalogItem key={product.id} {...product} />
               )
           }
         </Card.Group>
@@ -54,6 +56,7 @@ const mapStateToProps = ({ app, catalog }) => ({
 });
 
 const mapDispatchToProps = {
+  setFilter,
   setProducts,
   showLoader,
   hideLoader,

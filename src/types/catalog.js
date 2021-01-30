@@ -1,1 +1,2 @@
 export const SET_PRODUCTS = 'CATALOG:SET';
+export const SET_FILTER = 'CATALOG:SET_FILTER';
