@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Menu } from 'semantic-ui-react';
+import { Menu, Popup } from 'semantic-ui-react';
+import Cart from '../Cart';
 
-import { removeFromCart } from '../../actions/cart';
 import getTotalCost from '../../utils/getTotalCost';
 
 class Header extends React.Component {
@@ -12,30 +12,16 @@ class Header extends React.Component {
 
     return (
       <Menu>
-        <Menu.Item
-          name='shop'
-          // active={activeItem === 'browse'}
-          // onClick={this.handleItemClick}
-        >
-          Магазин книг
-        </Menu.Item>
-
-        <Menu.Menu position='right'>
-          <Menu.Item
-            name='cost'
-            // active={activeItem === 'signup'}
-            // onClick={this.handleItemClick}
-          >
-            Итого: {totalCost} руб.
-          </Menu.Item>
-
-          <Menu.Item
-            name='cart'
-            // active={activeItem === 'help'}
-            // onClick={this.handleItemClick}
-          >
-            Корзина (<b>{cartItemsCount}</b>)
-          </Menu.Item>
+        <Menu.Item>Магазин книг</Menu.Item>
+        <Menu.Menu position="right">
+          <Menu.Item >Итого: {totalCost} руб.</Menu.Item>
+          <Popup
+            trigger={<Menu.Item>Корзина (<b>{cartItemsCount}</b>)</Menu.Item>}
+            content={<Cart />}
+            on="click"
+            hideOnScroll
+            wide
+          />
         </Menu.Menu>
       </Menu>
     );
@@ -43,13 +29,8 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = ({ cart }) => ({
-  cartItems: cart.items,
   cartItemsCount: cart.items.length,
   totalCost: getTotalCost(cart.items),
 });
 
-const mapDispatchToProps = {
-  removeFromCart,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);
