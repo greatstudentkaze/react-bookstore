@@ -8,7 +8,7 @@ import { Card } from 'semantic-ui-react';
 import Loader from '../Loader';
 import CatalogItem from '../CatalogItem';
 
-import { setBooks } from '../../actions/books';
+import { setProducts } from '../../actions/catalog';
 import { hideLoader, showLoader } from '../../actions/app';
 
 const StyledCatalog = styled.section`
@@ -19,18 +19,18 @@ const StyledCatalog = styled.section`
 class Catalog extends React.Component {
 
   componentDidMount() {
-    const { setBooks, showLoader, hideLoader } = this.props;
+    const { setProducts, showLoader, hideLoader } = this.props;
 
     showLoader();
     axios.get('https://60151aae55dfbd00174c9fa6.mockapi.io/books')
       .then(response => {
-        setBooks(response.data);
+        setProducts(response.data);
         hideLoader();
       });
   }
 
   render() {
-    const { books, isLoading } = this.props;
+    const { products, isLoading } = this.props;
 
     return (
       <StyledCatalog>
@@ -38,8 +38,8 @@ class Catalog extends React.Component {
           {
             isLoading
               ? <Loader />
-              : books.map(book =>
-                <CatalogItem key={book.id} {...book} />
+              : products.map(product =>
+                <CatalogItem key={product.id} {...product} />
               )
           }
         </Card.Group>
@@ -48,13 +48,13 @@ class Catalog extends React.Component {
   }
 }
 
-const mapStateToProps = ({ app, books }) => ({
-  books: books.items,
+const mapStateToProps = ({ app, catalog }) => ({
+  products: catalog.items,
   isLoading: app.isLoading,
 });
 
 const mapDispatchToProps = {
-  setBooks,
+  setProducts,
   showLoader,
   hideLoader,
 };

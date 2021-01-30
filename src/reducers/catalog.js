@@ -1,12 +1,12 @@
-import { SET_BOOKS } from '../types/books';
+import { SET_PRODUCTS } from '../types/catalog';
 
 const initialState = {
   items: [],
 };
 
-export const books = (state = initialState, action) => {
+export const catalog = (state = initialState, action) => {
   switch (action.type) {
-    case SET_BOOKS:
+    case SET_PRODUCTS:
       return {
         ...state,
         items: action.payload,

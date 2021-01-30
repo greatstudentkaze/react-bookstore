@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import { app } from './app';
-import { books } from './books';
+import { catalog } from './catalog';
 import { cart } from './cart';
 
 export const rootReducer = combineReducers({
   app,
-  books,
+  catalog,
   cart,
 });
