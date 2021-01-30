@@ -1,7 +1,8 @@
-import { SET_FILTER } from '../types/filter';
+import { SET_FILTER, SET_SEARCH_QUERY } from '../types/filter';
 
 const initialState = {
   filterBy: 'all',
+  searchQuery: '',
 };
 
 export const filter = (state = initialState, action) => {
@@ -10,6 +11,11 @@ export const filter = (state = initialState, action) => {
       return {
         ...state,
         filterBy: action.payload,
+      }
+    case SET_SEARCH_QUERY:
+      return {
+        ...state,
+        searchQuery: action.payload,
       }
     default:
       return state;

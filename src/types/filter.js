@@ -1,1 +1,2 @@
-export const SET_FILTER = 'FILTER:SET';
+export const SET_FILTER = 'FILTER:SET_CATEGORY';
+export const SET_SEARCH_QUERY = 'FILTER:SET_SEARCH_QUERY';

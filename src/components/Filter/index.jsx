@@ -1,16 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import { Menu } from 'semantic-ui-react';
+import { Menu, Input } from 'semantic-ui-react';
 
-import { setFilter } from '../../actions/filter';
+import { setFilter, setSearchQuery } from '../../actions/filter';
 
-const Filter = ({ filterBy, setFilter }) => {
+const StyledMenu = styled(Menu)`
+  flex-wrap: wrap;
+  row-gap: 10px;
+`;
+
+const Filter = ({ filterBy, searchQuery, setFilter, setSearchQuery }) => {
 
   const handleItemClick = (evt, { name }) => setFilter(name);
 
   return (
-    <Menu secondary>
+    <StyledMenu secondary>
       <Menu.Item
         name='all'
         active={filterBy === 'all'}
@@ -35,16 +41,25 @@ const Filter = ({ filterBy, setFilter }) => {
         onClick={handleItemClick}
         children="Автор (в алфавитном порядке)"
       />
-    </Menu>
+      <Menu.Item>
+        <Input
+          value={searchQuery}
+          onChange={evt => setSearchQuery(evt.target.value)}
+          placeholder="Введите название..."
+          icon="search" />
+      </Menu.Item>
+    </StyledMenu>
   );
 }
 
 const mapStateToProps = ({ filter }) => ({
   filterBy: filter.filterBy,
+  searchQuery: filter.searchQuery,
 });
 
 const mapDispatchToProps = {
   setFilter,
+  setSearchQuery,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

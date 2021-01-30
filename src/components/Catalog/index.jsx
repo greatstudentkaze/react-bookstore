@@ -12,6 +12,7 @@ import Loader from '../Loader';
 import { hideLoader, showLoader } from '../../actions/app';
 import { setProducts } from '../../actions/catalog';
 import { setFilter } from '../../actions/filter';
+import searchProducts from '../../utils/searchProducts';
 import sortProductsBy from '../../utils/sortProductsBy';
 
 const StyledCatalog = styled.section`
@@ -53,7 +54,7 @@ class Catalog extends React.Component {
 }
 
 const mapStateToProps = ({ app, catalog, filter }) => ({
-  products: sortProductsBy(catalog.items, filter.filterBy),
+  products: sortProductsBy(searchProducts(catalog.items, filter.searchQuery), filter.filterBy),
   isLoading: app.isLoading,
 });
 
