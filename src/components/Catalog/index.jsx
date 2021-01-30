@@ -20,6 +20,12 @@ const StyledCatalog = styled.section`
   padding-bottom: 50px;
 `;
 
+const CatalogList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+`;
+
 class Catalog extends React.Component {
 
   componentDidMount() {
@@ -39,7 +45,7 @@ class Catalog extends React.Component {
     return (
       <StyledCatalog>
         <Filter />
-        <Card.Group itemsPerRow={4}>
+        <CatalogList className="ui four cards" itemsPerRow={4}>
           {
             isLoading
               ? <Loader />
@@ -47,7 +53,7 @@ class Catalog extends React.Component {
                   <CatalogItem key={product.id} {...product} />
               )
           }
-        </Card.Group>
+        </CatalogList>
       </StyledCatalog>
     );
   }
