@@ -18,28 +18,22 @@ const Filter = ({ filterBy, setFilter }) => {
         children="Все"
       />
       <Menu.Item
-        name='popular'
-        active={filterBy === 'popular'}
-        onClick={handleItemClick}
-        children="Популярные"
-      />
-      <Menu.Item
         name='lowest_price'
         active={filterBy === 'lowest_price'}
         onClick={handleItemClick}
-        children="Стоимость (дешёвые)"
+        children="Стоимость (сначала дешёвые)"
       />
       <Menu.Item
         name='highest_price'
         active={filterBy === 'highest_price'}
         onClick={handleItemClick}
-        children="Стоимость (дорогие)"
+        children="Стоимость (сначала дорогие)"
       />
       <Menu.Item
         name='author'
         active={filterBy === 'author'}
         onClick={handleItemClick}
-        children="Автор"
+        children="Автор (в алфавитном порядке)"
       />
     </Menu>
   );
