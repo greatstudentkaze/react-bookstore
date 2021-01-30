@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Menu } from 'semantic-ui-react';
 
-import { setFilter } from '../../actions/catalog';
+import { setFilter } from '../../actions/filter';
 
 const Filter = ({ filterBy, setFilter }) => {
 
@@ -39,8 +39,8 @@ const Filter = ({ filterBy, setFilter }) => {
   );
 }
 
-const mapStateToProps = ({ catalog }) => ({
-  filterBy: catalog.filterBy,
+const mapStateToProps = ({ filter }) => ({
+  filterBy: filter.filterBy,
 });
 
 const mapDispatchToProps = {

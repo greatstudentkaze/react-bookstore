@@ -9,8 +9,9 @@ import CatalogItem from '../CatalogItem';
 import Filter from '../Filter';
 import Loader from '../Loader';
 
-import { setFilter, setProducts } from '../../actions/catalog';
 import { hideLoader, showLoader } from '../../actions/app';
+import { setProducts } from '../../actions/catalog';
+import { setFilter } from '../../actions/filter';
 import sortProductsBy from '../../utils/sortProductsBy';
 
 const StyledCatalog = styled.section`
@@ -51,8 +52,8 @@ class Catalog extends React.Component {
   }
 }
 
-const mapStateToProps = ({ app, catalog }) => ({
-  products: sortProductsBy(catalog.items, catalog.filterBy),
+const mapStateToProps = ({ app, catalog, filter }) => ({
+  products: sortProductsBy(catalog.items, filter.filterBy),
   isLoading: app.isLoading,
 });
 
