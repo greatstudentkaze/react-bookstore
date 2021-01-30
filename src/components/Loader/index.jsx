@@ -1,15 +1,11 @@
-import { Dimmer, Image, Segment } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
-const Loader = () => {
+const LoaderComponent = () => {
   return (
-    <Segment>
-      <Dimmer active inverted>
-        <Loader inverted>Загрузка</Loader>
-      </Dimmer>
-
-      <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-    </Segment>
+    <Dimmer active inverted>
+      <Loader inverted>Загрузка</Loader>
+    </Dimmer>
   );
 };
 
-export default Loader
+export default LoaderComponent;
