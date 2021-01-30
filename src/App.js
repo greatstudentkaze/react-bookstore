@@ -2,7 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import { Container } from 'semantic-ui-react';
+
 import GlobalStyle from './components/styled/GlobalStyle';
+import Header from './components/Header';
+import CatalogItem from './components/CatalogItem';
+import Loader from './components/Loader';
 
 import { showLoader, hideLoader } from './actions/app';
 import { setBooks } from './actions/books';
@@ -33,20 +38,22 @@ class App extends React.Component {
     return (
       <>
         <GlobalStyle />
-        <ul>
-          {
-            isLoading
-              ? <p>Загрузка...</p>
-              : books.map(book =>
+        <Container>
+          <Header />
+          <ul className="ui container">
+            {
+              isLoading
+                ? <Loader />
+                : books.map(book =>
                   <li key={book.id}>
-                    <h3>{book.title}</h3>
-                    <b>{book.author}</b>
+                    <CatalogItem data={book} />
                   </li>
                 )
-          }
-        </ul>
+            }
+          </ul>
 
-        <button type="button" onClick={() => this.props.setBooks(newBooks)}>set new books</button>
+          <button type="button" onClick={() => this.props.setBooks(newBooks)}>set new books</button>
+        </Container>
       </>
     );
   }
