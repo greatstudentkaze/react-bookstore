@@ -1,8 +1,16 @@
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
-const CatalogItem = ({ title, author, image: imageUrl, price, rating }) => {
+import { Button, Card, Icon, Image } from 'semantic-ui-react';
+
+import { addToCart } from '../../actions/cart';
+
+const CatalogItem = ({ product, addToCart, addedToCartQuantity }) => {
+  const { title, author, image: imageUrl, price, rating } = product;
+
+  const handleClick = () => addToCart(product);
+
   return (
-    <Card>
+    <Card as="li">
       <Image src={imageUrl} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{title}</Card.Header>
@@ -14,8 +22,20 @@ const CatalogItem = ({ title, author, image: imageUrl, price, rating }) => {
         <Icon name="rub" />
         {price}
       </Card.Content>
+      <Button onClick={handleClick} type="button">
+        Добавить в корзину {addedToCartQuantity > 0 && `(${addedToCartQuantity})`}
+      </Button>
     </Card>
   );
 };
 
-export default CatalogItem;
+const mapStateToProps = ({ cart }, { product: { id } }) => ({
+  addedToCartQuantity: cart.items
+    .reduce((quantity, product) => quantity + (product.id === id ? 1 : 0), 0),
+});
+
+const mapDispatchToProps = {
+  addToCart,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogItem);

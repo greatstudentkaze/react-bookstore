@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
 
-import { Card } from 'semantic-ui-react';
-
 import CatalogItem from '../CatalogItem';
 import Filter from '../Filter';
 import Loader from '../Loader';
@@ -50,7 +48,7 @@ class Catalog extends React.Component {
             isLoading
               ? <Loader />
               : products.map(product =>
-                  <CatalogItem key={product.id} {...product} />
+                  <CatalogItem key={product.id} product={product} />
               )
           }
         </CatalogList>

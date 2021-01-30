@@ -1,8 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { Menu } from 'semantic-ui-react';
+
+import { removeFromCart } from '../../actions/cart';
+import getTotalCost from '../../utils/getTotalCost';
 
 class Header extends React.Component {
   render() {
+    const { cartItemsCount, totalCost } = this.props;
+
     return (
       <Menu>
         <Menu.Item
@@ -19,7 +26,7 @@ class Header extends React.Component {
             // active={activeItem === 'signup'}
             // onClick={this.handleItemClick}
           >
-            Итого: 0 руб.
+            Итого: {totalCost} руб.
           </Menu.Item>
 
           <Menu.Item
@@ -27,7 +34,7 @@ class Header extends React.Component {
             // active={activeItem === 'help'}
             // onClick={this.handleItemClick}
           >
-            Корзина
+            Корзина (<b>{cartItemsCount}</b>)
           </Menu.Item>
         </Menu.Menu>
       </Menu>
@@ -35,4 +42,14 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = ({ cart }) => ({
+  cartItems: cart.items,
+  cartItemsCount: cart.items.length,
+  totalCost: getTotalCost(cart.items),
+});
+
+const mapDispatchToProps = {
+  removeFromCart,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
